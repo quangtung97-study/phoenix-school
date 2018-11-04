@@ -48,6 +48,22 @@ defmodule School.Account do
     |> validate_required([:class_id])
   end
 
+  def remove_privilege(account, :admin) do
+    account
+    |> cast(%{is_admin: false}, [:is_admin])
+  end
+
+  def remove_privilege(account, :saodo) do
+    account
+    |> cast(%{is_saodo: false}, [:is_saodo])
+  end
+
+  def remove_privilege(account, :loptruong) do 
+    params = %{is_loptruong: false, class_id: nil}
+    account
+    |> cast(params, [:is_loptruong, :class_id])
+  end
+
   def password_correct?(account, password) do
     Bcrypt.verify_pass(password, account.password)
   end
@@ -56,7 +72,7 @@ defmodule School.Account do
     params = %{password: new_pwd}
 
     verify_pass = fn changeset ->
-      case Bcrypt.verify_pass(old_pwd, account.password) do
+      case password_correct?(account, old_pwd) do
         true -> changeset
         false -> add_error(changeset, :password, "Password is not correct")
       end
