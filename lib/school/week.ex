@@ -1,8 +1,8 @@
 defmodule School.Week do
   import Ecto.Changeset
 
-  def validate_beginning_of_week(cs, field, _options \\ []) do
-    validate_change(cs, field, fn _, date ->
+  def validate_beginning_of_week(cs, field) do
+    validate_change(cs, field, fn field, date ->
       year = div(date, 10000)
       date = date - year * 10000
       month = div(date, 100)

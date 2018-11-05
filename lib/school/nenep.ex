@@ -1,5 +1,7 @@
 defmodule School.NeNep do
   use Ecto.Schema
+  alias School.NeNep
+  import Ecto.Changeset
 
   schema "nenep" do
     field :day, :integer
@@ -17,5 +19,24 @@ defmodule School.NeNep do
     field :tdabc, :integer
     field :nghithucdoi, :integer
     field :ghichu, :string
+  end
+
+  defp validate_privilege(hoctap, map, account) do
+    check_privilege = fn 
+      changeset, true, _ -> changeset
+      changeset, _, true -> changeset
+      changeset, _, _ -> 
+        add_error(changeset, :privilege, "Does not have the privilege")
+    end
+
+    hoctap 
+    |> cast(map, [])
+    |> check_privilege.(account.is_admin, account.is_saodo)
+  end
+
+  def new(map, account) do 
+    %NeNep{}
+    |> validate_privilege(map, account)
+    |> School.HocTap.validate_date(map)
   end
 end
