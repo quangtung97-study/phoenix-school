@@ -16,7 +16,14 @@ defmodule SchoolWeb.Router do
   scope "/", SchoolWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", HomeController, :index
+
+    get "/account/", AccountController, :index
+    get "/account/login", AccountController, :login
+    get "/account/succeed", AccountController, :succeed
+    post "/account/login", AccountController, :login_post
+    post "/account/logout", AccountController, :logout
+    post "/account/change-password", AccountController, :change_password
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,31 @@
+<%= if @account != nil do %>
+
+<%= if @account.is_admin or @account.is_loptruong do %>
+<li class="nav-item">
+  <a class="nav-link" href="/hoctap/">Học tập</a>
+</li>
+<% end %>
+
+<%= if @account.is_admin or @account.is_saodo do %>
+<li class="nav-item">
+  <a class="nav-link" href="/nenep/">Nề nếp</a>
+</li>
+<% end %>
+
+<%= if @account.is_admin do %>
+<li class="nav-item">
+  <a class="nav-link" href="/manage/">Quản lý</a>
+</li>
+<% end %>
+
+<% else %>
+
+<%= if @page == :login do %>
+<li class="nav-item active">
+  <a class="nav-link" href="/account/login/">
+    Đăng nhập
+  </a>
+</li>
+<% end %>
+
+<% end %>

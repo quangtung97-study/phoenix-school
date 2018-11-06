@@ -1,0 +1,41 @@
+<link href="<%= static_path(@conn, "/css/account/detail.css") %>" rel="stylesheet"/>
+
+<div class="container">
+<div class="detail-form">
+<div class="main-div">
+  <div class="panel">
+    <h2>Tài khoản: <%= @account.username %> </h2>
+  </div>
+  <div class="panel">
+    <h2>Quyền: <%= privilege_string(@account) %></h2>
+  </div>
+</div></div></div>
+
+<div class="container">
+<div class="detail-form">
+<div class="main-div" id="change-password">
+  <div class="panel">
+    <p>Thay đổi mật khẩu</p>
+  </div>
+  <form action="/account/change-password/" method="post">
+    <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+
+    <div class="form-group">
+      <input type="password" class="form-control" 
+        name="old-password" placeholder="Mật khẩu cũ">
+    </div>
+
+    <div class="form-group">
+      <input type="password" class="form-control" 
+        name="new-password" placeholder="Mật khẩu mới">
+    </div>
+
+    <div class="form-group">
+      <input type="password" class="form-control" 
+        name="confirmed-new-password" placeholder="Nhập lại mật khẩu mới">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Thay đổi mật khẩu</button>
+  </form>
+  </div>
+</div></div></div>

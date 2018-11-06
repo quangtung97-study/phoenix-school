@@ -1,0 +1,21 @@
+<%= if @account != nil do %>
+<li class="nav-item">
+  <a class="btn btn-info" href="/account/">
+    Tài khoản
+  </a>
+</li>
+<li class="nav-item">
+  <form style="margin: 0px; " method="post" action="/account/logout/">
+    <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+    <button type="submit" class="btn btn-primary">Đăng xuất</button>
+  </form>
+</li>
+<% else %>
+<ul class="navbar-nav ml-auto">
+<li class="nav-item">
+  <a class="btn btn-primary" href="/account/login/">
+    Đăng nhập
+  </a>
+</li>
+</ul>
+<% end %>
