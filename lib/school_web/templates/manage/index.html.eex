@@ -1,7 +1,37 @@
 <link href="<%= static_path(@conn, "/css/manage.css") %>" rel="stylesheet"/>
 
+<div id="menu">
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link btn-secondary" href="#top-bar">Quản lý</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link btn-secondary" href="#new">Thêm tài khoản</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link btn-secondary" href="#delete">Xóa tài khoản</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link btn-secondary" href="#admin">Tài khoản: Quản trị</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link btn-secondary" href="#saodo">Tài khoản: Sao đỏ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link btn-secondary" href="#loptruong">Tài khoản: Lớp trưởng</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link btn-secondary" href="#new-class">Thêm lớp</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link btn-secondary" href="#delete-class">Xóa lớp</a>
+  </li>
+</ul>
+</div>
+
 <div class="container">
 <div class="detail-form">
+
 <div class="main-div">
   <div class="panel">
     <h2>Tài khoản: <%= @account.username %> </h2>
@@ -11,7 +41,7 @@
 <div class="container">
 <div class="detail-form">
 
-<div class="main-div">
+<div id="new" class="main-div">
   <div class="panel">
     <p>Thêm tài khoản</p>
   </div>
@@ -37,21 +67,164 @@
   </form>
 </div>
 
-<div class="main-div">
+<div id="delete" class="main-div">
   <div class="panel">
     <p>Xóa tài khoản</p>
   </div>
   <form action="/manage/delete/" method="POST">
     <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
 
-    <div id="account-list">
+    <div class="account-list">
       <%= for acc <- @accounts do %>
-        <input type="checkbox" name="account_id_<%= acc.id %>" value="<%= acc.id %>" /> 
+        <input type="checkbox" name="string_id_<%= acc.id %>" value="<%= acc.id %>" /> 
         <span class="text-primary" ><%= acc.username %></span><br>
       <% end %>
       <br>
     </div>
     <button type="submit" class="btn btn-primary">Xóa</button>
   </form>
+</div>
+
+<div id="admin" class="main-div">
+  <div class="panel">
+    <p>Tài khoản: Quản trị</p>
   </div>
-</div></div></div>
+  <form action="/manage/remove/admin/" method="POST">
+    <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+
+    <div class="account-list">
+      <%= for acc <- @admins do %>
+        <input type="checkbox" name="string_id_<%= acc.id %>" value="<%= acc.id %>" /> 
+        <span class="text-primary" ><%= acc.username %></span><br>
+      <% end %>
+      <br>
+    </div>
+    <button type="submit" class="btn btn-primary">Hủy quyền</button>
+  </form>
+
+  <form action="/manage/add/admin/" method="POST">
+    <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+
+    <div class="select-list">
+    <span class="text-primary">Chọn tài khoản:</span>
+    <select name="account">
+      <%= for acc <- @accounts do %>
+        <option value="<%= acc.id %>"><%= acc.username %></option>
+      <% end %>
+    </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Thêm quyền</button>
+  </form>
+</div>
+
+<div id="saodo" class="main-div">
+  <div class="panel">
+    <p>Tài khoản: Sao đỏ</p>
+  </div>
+  <form action="/manage/remove/saodo/" method="POST">
+    <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+
+    <div class="account-list">
+      <%= for acc <- @saodos do %>
+        <input type="checkbox" name="string_id_<%= acc.id %>" value="<%= acc.id %>" /> 
+        <span class="text-primary" ><%= acc.username %></span><br>
+      <% end %>
+      <br>
+    </div>
+    <button type="submit" class="btn btn-primary">Hủy quyền</button>
+  </form>
+
+  <form action="/manage/add/saodo/" method="POST">
+    <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+
+    <div class="select-list">
+    <span class="text-primary">Chọn tài khoản:</span>
+    <select name="account">
+      <%= for acc <- @accounts do %>
+        <option value="<%= acc.id %>"><%= acc.username %></option>
+      <% end %>
+    </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Thêm quyền</button>
+  </form>
+</div>
+
+<div id="loptruong" class="main-div">
+  <div class="panel">
+    <p>Tài khoản: Lớp trưởng</p>
+  </div>
+  <form action="/manage/remove/loptruong/" method="POST">
+    <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+
+    <div class="account-list">
+      <%= for acc <- @loptruongs do %>
+        <input type="checkbox" name="string_id_<%= acc.id %>" value="<%= acc.id %>" /> 
+        <span class="text-primary" >
+          <%= acc.username %>
+          <span class="manage-class">lớp: <%= acc.class.classname %></span>
+        </span><br>
+      <% end %>
+      <br>
+    </div>
+    <button type="submit" class="btn btn-primary">Hủy quyền</button>
+  </form>
+
+  <form action="/manage/add/loptruong/" method="POST">
+    <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+
+    <div class="select-list">
+    <span class="text-primary">Chọn tài khoản:</span>
+    <select name="account">
+      <%= for acc <- @accounts do %>
+        <option value="<%= acc.id %>"><%= acc.username %></option>
+      <% end %>
+    </select><br>
+
+    <span class="text-primary">Chọn lớp:</span>
+    <select name="class">
+      <%= for class <- @classes do %>
+        <option value="<%= class.id %>"><%= class.classname %></option>
+      <% end %>
+    </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Thêm quyền</button>
+  </form>
+</div>
+
+<div id="new-class" class="main-div">
+  <div class="panel">
+    <p>Thêm lớp</p>
+  </div>
+
+  <form action="/manage/new/class/" method="POST">
+    <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+
+    <div class="form-group">
+      <input type="text" class="form-control" 
+        name="classname" placeholder="Tên lớp">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Thêm lớp</button>
+  </form>
+
+</div>
+
+<div id="delete-class" class="main-div">
+  <div class="panel">
+    <p>Xóa lớp</p>
+  </div>
+  <form action="/manage/delete/class/" method="POST">
+    <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+
+    <div class="account-list">
+      <%= for class <- @classes do %>
+        <input type="checkbox" name="string_id_<%= class.id %>" value="<%= class.id %>" /> 
+        <span class="text-primary" ><%= class.classname %></span><br>
+      <% end %>
+      <br>
+    </div>
+    <button type="submit" class="btn btn-primary">Xóa lớp</button>
+  </form>
+</div>
+
+</div></div>

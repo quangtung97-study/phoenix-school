@@ -5,6 +5,18 @@ body {
     background-size: cover; 
 }
 
+#menu {
+    position: fixed;
+    top: 100px;
+    background-color: white;
+}
+
+#menu a {
+    border-style: ridge;
+    border-width: 1px;
+    border-color: white;
+}
+
 div.container { margin-top: 10pt; }
 .form-heading { color:#fff; font-size:23px;}
 .panel h2{ color:#444444; font-size:28px; margin:0 0 8px 0;}
@@ -44,15 +56,26 @@ div.container { margin-top: 10pt; }
   padding: 0;
 }
 
-#account-list {
+div.account-list {
   text-align: left;
 }
 
-#account-list>input {
+div.account-list>input {
   transform: scale(1.5);
 }
 
-#account-list span {
+div.account-list>span {
   margin-left: 10px;
   font-size: 20px; 
+}
+
+div.select-list {
+  text-align: left;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.manage-class {
+  padding-left: 4em;
 }

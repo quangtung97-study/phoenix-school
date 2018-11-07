@@ -25,13 +25,15 @@ defmodule SchoolWeb.AccountController do
     username = params["username"]
     password = params["password"]
     account_id = AccountManager.login(username, password)
-    conn = put_session(conn, :account_id, account_id)
-    redirect conn, to: "/"
+    conn
+    |> put_session(:account_id, account_id)
+    |> redirect(to: "/")
   end
 
   def logout(conn, _params) do
-    conn = delete_session(conn, :account_id)
-    redirect conn, to: "/"
+    conn
+    |> delete_session(:account_id)
+    |> redirect(to: "/")
   end
 
   def index(conn, _params) do 

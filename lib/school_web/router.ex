@@ -30,6 +30,17 @@ defmodule SchoolWeb.Router do
     get "/manage/", ManageController, :index
     post "/manage/new/", ManageController, :new_account
     post "/manage/delete/", ManageController, :delete_accounts
+
+    post "/manage/add/admin", ManageController, :add_admin
+    post "/manage/add/saodo", ManageController, :add_saodo
+    post "/manage/add/loptruong", ManageController, :add_loptruong
+
+    post "/manage/remove/admin/", ManageController, :remove_admins
+    post "/manage/remove/saodo/", ManageController, :remove_saodos
+    post "/manage/remove/loptruong/", ManageController, :remove_loptruongs
+
+    post "/manage/new/class/", ManageController, :new_class
+    post "/manage/delete/class/", ManageController, :delete_classes
   end
 
   # Other scopes may use custom stacks.

@@ -3,9 +3,19 @@ defmodule School.Admin do
   alias School.Account
   import Ecto.Query, only: [from: 2]
 
-  def new_account(username, password) do
+  def new(username, password) do
     Account.new(username, password)
     |> Repo.insert()
+  end
+
+  def delete(account_id) do
+    if account_id != nil do
+      Repo.delete(%Account{id: account_id})
+    end
+  end
+
+  def classes() do
+    Repo.all(School.Class)
   end
 
   def list() do
@@ -24,7 +34,7 @@ defmodule School.Admin do
 
   def list(:loptruong) do
     query = from a in Account, where: a.is_loptruong == true
-    Repo.all(query)
+    Repo.all(query) |> Repo.preload(:class)
   end
 
   def add(:admin, account_id) do
@@ -61,5 +71,20 @@ defmodule School.Admin do
     %Account{id: account_id}
     |> Account.remove_privilege(:loptruong)
     |> Repo.update()
+  end
+
+  def new_class(classname) do
+    School.Class.new(classname)
+    |> Repo.insert()
+  end
+
+  def delete_class(class_id) do
+    try do
+      class_id
+      |> School.Class.delete()
+      |> Repo.delete()
+    rescue
+      _ -> nil
+    end
   end
 end
