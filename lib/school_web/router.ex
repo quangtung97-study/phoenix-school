@@ -24,6 +24,12 @@ defmodule SchoolWeb.Router do
     post "/account/login", AccountController, :login_post
     post "/account/logout", AccountController, :logout
     post "/account/change-password", AccountController, :change_password
+
+    get "/hoctap/", HoctapController, :index
+
+    get "/manage/", ManageController, :index
+    post "/manage/new/", ManageController, :new_account
+    post "/manage/delete/", ManageController, :delete_accounts
   end
 
   # Other scopes may use custom stacks.

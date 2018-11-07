@@ -19,7 +19,7 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item <%= homepage_link_active?(@page) %>">
+          <li class="nav-item <%= home_active?(@page) %>">
             <a class="nav-link" href="/">Trang chủ </a>
           </li>
           <%= render(SchoolWeb.LayoutView, "left.html", assigns) %>

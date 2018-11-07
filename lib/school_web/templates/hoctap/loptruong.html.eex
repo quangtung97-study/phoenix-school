@@ -1,0 +1,49 @@
+<h3 class="text-primary" >Lớp: 11A1</h3>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Thứ</th>
+      <th scope="col">Điểm Giỏi</th>
+      <th scope="col">Điểm Khá</th>
+      <th scope="col">Điểm TB</th>
+      <th scope="col">Điểm Yếu</th>
+      <th scope="col">Điểm Kém</th>
+      <th scope="col">Giờ Tốt</th>
+      <th scope="col">Giờ Khá</th>
+      <th scope="col">Giờ TB</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="tr-hoctap-info">
+      <th scope="row" name="thu">2</th>
+      <td><input type="number" name="diemgioi"  value="-25"   class="form-control"/></td>
+      <td><input type="number" name="diemkha"   value="10"    class="form-control"/></td>
+      <td><input type="number" name="diemtb"    value="10"    class="form-control"/></td>
+      <td><input type="number" name="diemyeu"   value="10"    class="form-control"/></td>
+      <td><input type="number" name="diemkem"   value="10"    class="form-control"/></td>
+      <td><input type="number" name="giotot"    value="10"    class="form-control"/></td>
+      <td><input type="number" name="giokha"    value="10"    class="form-control"/></td>
+      <td><input type="number" name="giotb"     value="10"    class="form-control"/></td>
+
+      <td><button type="button" class="button-modify btn btn-sm btn-primary btn-block">Cập nhật</button></td>
+      <td><button type="button" class="button-remove btn btn-sm btn-danger btn-block">Xóa</button></td>
+    </tr>
+
+    <tr id="tr-hoctap-add-row">
+      <th scope="row" name="thu">3</th>
+      <td><input type="number" name="diemgioi"   class="form-control"/></td>
+      <td><input type="number" name="diemkha"   class="form-control"/></td>
+      <td><input type="number" name="diemtb"    class="form-control"/></td>
+      <td><input type="number" name="diemyeu"   class="form-control"/></td>
+      <td><input type="number" name="diemkem"   class="form-control"/></td>
+      <td><input type="number" name="giotot"    class="form-control"/></td>
+      <td><input type="number" name="giokha"    class="form-control"/></td>
+      <td><input type="number" name="giotb"     class="form-control"/></td>
+      <td colspan="2">
+        <button type="button" class="btn btn-sm btn-primary btn-block">Thêm hàng</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

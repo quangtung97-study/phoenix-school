@@ -1,6 +1,7 @@
 defmodule School.AccountManager do 
   alias School.Account
   alias School.Repo
+  import Ecto.Query, only: [from: 1]
 
   def get(nil), do: nil
 
@@ -27,5 +28,21 @@ defmodule School.AccountManager do
       {:ok, _} -> :ok
       {:error, _} -> :fail
     end
+  end
+
+  def new(username, password) do
+    Account.new(username, password)
+    |> Repo.insert()
+  end
+
+  def delete(account_id) do
+    if account_id != nil do
+      Repo.delete(%Account{id: account_id})
+    end
+  end
+
+  def list do
+    query = from a in Account
+    Repo.all(query)
   end
 end

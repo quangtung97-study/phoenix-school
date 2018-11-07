@@ -2,7 +2,7 @@ defmodule SchoolWeb.AccountController do
   use SchoolWeb, :controller
   alias School.AccountManager
 
-  defp basic_assigns(conn) do
+  def basic_assigns(conn) do
     account_id = get_session(conn, :account_id)
     account = AccountManager.get(account_id)
     %{
