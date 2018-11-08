@@ -4,7 +4,7 @@
     <ul class="navbar-nav mr-auto">
       <%= for c <- @classes do %>
         <li class="nav-item <%= class_active?(c, @class) %>" 
-          style="width: 80px; border-style: solid; border-width: 0px 1px 0px 0px;">
+          style="width: 60px; border-style: solid; border-width: 0px 1px 0px 0px;">
           <a class="nav-link" href="/hoctap/admin/<%= c.id %>/<%= @week_start_date %>"><%= c.classname %></a>
         </li>
       <% end %>

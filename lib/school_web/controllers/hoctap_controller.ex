@@ -46,7 +46,7 @@ defmodule SchoolWeb.HoctapController do
   end
 
   # For loptruong
-  defp index_case(conn, params, assigns, false, true) do
+  defp index_case(conn, _params, assigns, false, true) do
     class = HocTapManager.class(assigns.account.class_id)
     week = 
       HocTapManager.week(class.id)
@@ -61,7 +61,7 @@ defmodule SchoolWeb.HoctapController do
     render(conn, "loptruong.html", assigns)
   end
 
-  defp index_case(conn, params, _assigns, _is_admin, _is_loptruong) do
+  defp index_case(conn, _params, _assigns, _is_admin, _is_loptruong) do
     redirect(conn, to: "/")
   end
 
