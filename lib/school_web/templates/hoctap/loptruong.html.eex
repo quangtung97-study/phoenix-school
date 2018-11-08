@@ -1,5 +1,7 @@
-<h3 class="text-primary" >Lớp: 11A1</h3>
+<h3 class="text-primary" >Lớp: <%= @class.classname %></h3>
+<h4 class="text-primary" >Tuần học: <%= @week_start_date %></h4>
 <table class="table table-striped">
+  <script src="<%= static_path(@conn, "/js/hoctap.js") %>"></script>
   <thead class="thead-dark">
     <tr>
       <th scope="col">Thứ</th>
@@ -16,34 +18,49 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="tr-hoctap-info">
-      <th scope="row" name="thu">2</th>
-      <td><input type="number" name="diemgioi"  value="-25"   class="form-control"/></td>
-      <td><input type="number" name="diemkha"   value="10"    class="form-control"/></td>
-      <td><input type="number" name="diemtb"    value="10"    class="form-control"/></td>
-      <td><input type="number" name="diemyeu"   value="10"    class="form-control"/></td>
-      <td><input type="number" name="diemkem"   value="10"    class="form-control"/></td>
-      <td><input type="number" name="giotot"    value="10"    class="form-control"/></td>
-      <td><input type="number" name="giokha"    value="10"    class="form-control"/></td>
-      <td><input type="number" name="giotb"     value="10"    class="form-control"/></td>
+    <%= for day <- [2, 3, 4, 5, 6, 7] do %>
+      <%= if @week[day] == nil do %>
+        <tr id="row<%= day - 1 %>">
+          <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+          <input type="hidden" value="" name="id"/>
+          <input type="hidden" value="<%= @class.id %>" name="class_id"/>
+          <input type="hidden" value="<%= day - 1 %>" name="day"/>
+          <th scope="row" name="day"><%= day %></th>
+          <td><input type="number" name="diemgioi"  class="form-control"/></td>
+          <td><input type="number" name="diemkha"   class="form-control"/></td>
+          <td><input type="number" name="diemtb"    class="form-control"/></td>
+          <td><input type="number" name="diemyeu"   class="form-control"/></td>
+          <td><input type="number" name="diemkem"   class="form-control"/></td>
+          <td><input type="number" name="giotot"    class="form-control"/></td>
+          <td><input type="number" name="giokha"    class="form-control"/></td>
+          <td><input type="number" name="giotb"     class="form-control"/></td>
+          <td colspan="2">
+            <button type="button" class="btn btn-sm btn-primary btn-block"
+              onclick='add_button($("#row<%= day - 1%>"))'>Thêm ngày</button>
+          </td>
+        </tr>
+      <% else %>
+        <tr id="row<%= day - 1 %>">
+          <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+          <input type="hidden" value="<%= @week[day].id %>" name="id"/>
+          <input type="hidden" value="<%= @class.id %>" name="class_id"/>
+          <input type="hidden" value="<%= day - 1 %>" name="day"/>
+          <th scope="row" name="thu"><%= day %></th>
+          <td><input type="number" name="diemgioi"  value="<%= @week[day].diemgioi %>"    class="form-control"/></td>
+          <td><input type="number" name="diemkha"   value="<%= @week[day].diemkha %>"     class="form-control"/></td>
+          <td><input type="number" name="diemtb"    value="<%= @week[day].diemtb %>"      class="form-control"/></td>
+          <td><input type="number" name="diemyeu"   value="<%= @week[day].diemyeu %>"     class="form-control"/></td>
+          <td><input type="number" name="diemkem"   value="<%= @week[day].diemkem %>"     class="form-control"/></td>
+          <td><input type="number" name="giotot"    value="<%= @week[day].giotot %>"      class="form-control"/></td>
+          <td><input type="number" name="giokha"    value="<%= @week[day].giokha %>"      class="form-control"/></td>
+          <td><input type="number" name="giotb"     value="<%= @week[day].giotb %>"       class="form-control"/></td>
 
-      <td><button type="button" class="button-modify btn btn-sm btn-primary btn-block">Cập nhật</button></td>
-      <td><button type="button" class="button-remove btn btn-sm btn-danger btn-block">Xóa</button></td>
-    </tr>
-
-    <tr id="tr-hoctap-add-row">
-      <th scope="row" name="thu">3</th>
-      <td><input type="number" name="diemgioi"   class="form-control"/></td>
-      <td><input type="number" name="diemkha"   class="form-control"/></td>
-      <td><input type="number" name="diemtb"    class="form-control"/></td>
-      <td><input type="number" name="diemyeu"   class="form-control"/></td>
-      <td><input type="number" name="diemkem"   class="form-control"/></td>
-      <td><input type="number" name="giotot"    class="form-control"/></td>
-      <td><input type="number" name="giokha"    class="form-control"/></td>
-      <td><input type="number" name="giotb"     class="form-control"/></td>
-      <td colspan="2">
-        <button type="button" class="btn btn-sm btn-primary btn-block">Thêm hàng</button>
-      </td>
-    </tr>
+          <td><button type="button" class="button-modify btn btn-sm btn-primary btn-block"
+                onclick='update_button($("#row<%= day - 1%>"))'>Cập nhật</button>
+          <td><button type="button" class="button-remove btn btn-sm btn-danger btn-block"
+                onclick='delete_button($("#row<%= day - 1%>"))'>Xóa</button>
+        </tr>
+      <% end %>
+    <% end %>
   </tbody>
 </table>

@@ -38,8 +38,7 @@ defmodule School.HocTap do
     hoctap
     |> cast(map, [:day, :week_start_date])
     |> validate_required([:day, :week_start_date])
-    |> validate_number(:day, 
-      greater_than_or_equal_to: 1, less_than_or_equal_to: 7)
+    |> validate_inclusion(:day, 1..6)
     |> School.Week.validate_beginning_of_week(:week_start_date)
   end
 
@@ -66,10 +65,15 @@ defmodule School.HocTap do
     |> validate_diem(map)
   end
 
-  def update(hoctap_id, map, account) do
-    %HocTap{id: hoctap_id}
+  def update(map, account) do
+    %HocTap{id: map.id}
     |> validate_privilege(map, account)
     |> validate_date(map)
     |> validate_diem(map)
+  end
+
+  def delete(map, account) do
+    %HocTap{id: map.id}
+    |> validate_privilege(map, account)
   end
 end

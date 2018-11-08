@@ -15,25 +15,35 @@ defmodule School.Admin do
   end
 
   def classes() do
-    Repo.all(School.Class)
+    query = from c in School.Class, 
+      order_by: c.classname
+    Repo.all(query)
   end
 
   def list() do
-    Repo.all(Account)
+    query = from a in Account, 
+      order_by: a.username
+    Repo.all(query)
   end
 
   def list(:admin) do 
-    query = from a in Account, where: a.is_admin == true
+    query = from a in Account, 
+      where: a.is_admin == true,
+      order_by: a.username
     Repo.all(query)
   end
 
   def list(:saodo) do
-    query = from a in Account, where: a.is_saodo == true
+    query = from a in Account, 
+      where: a.is_saodo == true,
+      order_by: a.username
     Repo.all(query)
   end
 
   def list(:loptruong) do
-    query = from a in Account, where: a.is_loptruong == true
+    query = from a in Account, 
+      where: a.is_loptruong == true,
+      order_by: a.username
     Repo.all(query) |> Repo.preload(:class)
   end
 
