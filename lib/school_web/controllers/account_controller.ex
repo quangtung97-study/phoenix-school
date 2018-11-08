@@ -47,8 +47,8 @@ defmodule SchoolWeb.AccountController do
   defp handle_change_password(conn, account_id, old_pwd, new_pwd) do
     case AccountManager.change_password(
       account_id, old_pwd, new_pwd) do
-      :ok -> redirect conn, to: "/account/succeed"
-      :fail -> redirect conn, to: "/account/"
+      :ok -> redirect(conn, to: "/account/succeed")
+      :fail -> redirect(conn, to: "/account/")
     end
   end
 
@@ -61,7 +61,7 @@ defmodule SchoolWeb.AccountController do
       handle_change_password(conn, 
         account_id, old_password, new_password)
     else
-      redirect conn, to: "/account/"
+      redirect(conn, to: "/account/")
     end
   end
 

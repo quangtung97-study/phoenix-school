@@ -1,6 +1,6 @@
-defmodule School.HocTapManager do
+defmodule School.NeNepManager do
   alias School.Repo
-  alias School.HocTap
+  alias School.NeNep
   alias School.Account
   alias School.Week
   alias School.Class
@@ -18,20 +18,20 @@ defmodule School.HocTapManager do
   def new(map, account_id) do
     map = default_week(map)
     account = Repo.get!(Account, account_id)
-    HocTap.new(map, account)
+    NeNep.new(map, account)
     |> Repo.insert!()
   end
 
   def update(map, account_id) do
     map = default_week(map)
     account = Repo.get!(Account, account_id)
-    HocTap.update(map, account)
+    NeNep.update(map, account)
     |> Repo.update!()
   end
 
   def delete(map, account_id) do
     account = Repo.get!(Account, account_id)
-    HocTap.delete(map, account)
+    NeNep.delete(map, account)
     |> Repo.delete!()
   end
 
@@ -48,7 +48,7 @@ defmodule School.HocTapManager do
   end
 
   def week(class_id, start_date \\ Week.current_week()) do
-    query = from e in HocTap,
+    query = from e in NeNep,
       where: e.week_start_date == ^start_date and e.class_id == ^class_id,
       order_by: e.day
     Repo.all(query)

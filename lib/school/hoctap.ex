@@ -21,16 +21,19 @@ defmodule School.HocTap do
 
   defp validate_privilege(hoctap, map, account) do
     check_privilege = fn 
-      changeset, true, _, _, _ -> changeset
-      changeset, _, true, id, id -> changeset
-      changeset, _, _, _, _ -> 
+      changeset, true, _, _, _, _, _ -> changeset
+      changeset, _, true, id, id, date, date -> changeset
+      changeset, _, _, _, _, _, _ -> 
         add_error(changeset, :privilege, "Does not have the privilege")
     end
 
     hoctap 
     |> cast(map, [:class_id])
-    |> check_privilege.(account.is_admin, 
-      account.is_loptruong, account.class_id, map[:class_id])
+    |> check_privilege.(
+      account.is_admin, account.is_loptruong, 
+      account.class_id, map[:class_id],
+      map[:current_week], map[:week_start_date]
+    )
     |> validate_required([:class_id])
   end
 

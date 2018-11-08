@@ -43,16 +43,18 @@ defmodule School.Repo.Migrations.Init do
       add :class_id, references(:class), null: false
 
       add :siso, :int, null: false
-      add :dongphuc, :int, null: false
       add :khanquang, :int, null: false
-      add :truybai, :int, null: false
-      add :chaoco, :int, null: false
+      add :dongphuc, :int, null: false
       add :vesinh, :int, null: false
+
+      add :chaoco, :int, null: false
+      add :truybai, :int, null: false
       add :bakhong, :int, null: false
       add :shdoi, :int, null: false
-      add :tdabc, :int, null: false
+
+      add :tdvuichoi, :int, null: false
       add :nghithucdoi, :int, null: false
-      add :ghichu, :varchar, size: 100, null: false
+      add :ghichu, :varchar, size: 100, default: ""
     end
 
     create unique_index(:nenep, [:day, :week_start_date, :class_id])

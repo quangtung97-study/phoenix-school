@@ -21,5 +21,5 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 
 ## To enable port 80 on release
 ```console
-sudo setcap CAP_NET_BIND_SERVICE=+eip ./erts-<some-version>/bin/beam.smp
+$ sudo setcap CAP_NET_BIND_SERVICE=+eip ./erts-<some-version>/bin/beam.smp
 ```

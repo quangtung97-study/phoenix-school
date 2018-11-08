@@ -5,7 +5,7 @@
       <%= for c <- @classes do %>
         <li class="nav-item <%= class_active?(c, @class) %>" 
           style="width: 60px; text-align: center; border-style: solid; border-width: 0px 1px 0px 0px;">
-          <a class="nav-link" href="/hoctap/admin/<%= c.id %>/<%= @week_start_date %>"><%= c.classname %></a>
+          <a class="nav-link" href="/nenep/admin/<%= c.id %>/<%= @week_start_date %>"><%= c.classname %></a>
         </li>
       <% end %>
     </ul>
@@ -13,11 +13,11 @@
       <%= for d <- @nearest_start_dates do %>
         <li class="nav-item <%= start_date_active?(d, @week_start_date) %>" 
           style="border-style: solid; border-width: 0px 0px 0px 1px;">
-          <a class="nav-link" href="/hoctap/admin/<%= @class.id %>/<%= d %>"><%= d %></a>
+          <a class="nav-link" href="/nenep/admin/<%= @class.id %>/<%= d %>"><%= d %></a>
         </li>
       <% end %>
     </ul>
   </div>
 </nav>
 
-<%= render(@view_module, "loptruong.html", assigns) %>
+<%= render(@view_module, "nenep.html", assigns) %>

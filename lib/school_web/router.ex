@@ -46,6 +46,16 @@ defmodule SchoolWeb.Router do
     post "/hoctap/add/", HoctapController, :add
     post "/hoctap/update/", HoctapController, :update
     post "/hoctap/delete/", HoctapController, :delete
+
+    get "/nenep/", NenepController, :index
+    get "/nenep/saodo/", NenepController, :index_saodo
+    get "/nenep/saodo/:class_id", NenepController, :index_saodo
+    get "/nenep/admin/", NenepController, :index_admin
+    get "/nenep/admin/:class_id/:week_start_date", NenepController, :index_admin
+
+    post "/nenep/add/", NenepController, :add
+    post "/nenep/update/", NenepController, :update
+    post "/nenep/delete/", NenepController, :delete
   end
 
   # Other scopes may use custom stacks.

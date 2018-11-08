@@ -15,10 +15,19 @@ defmodule School.Week do
     end)
   end
 
+  def day_of_week({{year, month, day}, _}) do 
+    {:ok, date} = Date.new(year, month, day)
+    Date.day_of_week(date)
+  end
+
   def start_date({{year, month, day}, _}) do
     {:ok, date} = Date.new(year, month, day)
     date = Date.add(date, 1 - Date.day_of_week(date))
     date.year * 10000 + date.month * 100 + date.day
+  end
+
+  def current_week() do 
+    start_date(:erlang.localtime())
   end
 
   def nearest_start_dates({{year, month, day}, _}, n) do
@@ -33,8 +42,7 @@ defmodule School.Week do
     |> Enum.take(n)
   end
 
-  def day_of_week({{year, month, day}, _}) do 
-    {:ok, date} = Date.new(year, month, day)
-    Date.day_of_week(date)
+  def nearest_start_dates(n) do
+    nearest_start_dates(:erlang.localtime, n)
   end
 end

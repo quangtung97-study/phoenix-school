@@ -10,6 +10,7 @@ defmodule Shool.HocTapTest do
       class_id: 5,
       day: 2,
       week_start_date: 20181105,
+      current_week: 20181105,
 
       diemgioi: 5,
       diemkha: 3,
@@ -40,7 +41,12 @@ defmodule Shool.HocTapTest do
     {:error, cs} = 
       HocTap.new(map, account)
       |> apply_action(:insert)
+    assert cs.errors == [privilege: {"Does not have the privilege", []}]
 
+    map = %{context.map|current_week: 20181112}
+    {:error, cs} = 
+      HocTap.new(map, account)
+      |> apply_action(:insert)
     assert cs.errors == [privilege: {"Does not have the privilege", []}]
 
     map = %{context.map|class_id: 5}

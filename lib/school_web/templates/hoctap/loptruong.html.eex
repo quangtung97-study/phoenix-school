@@ -25,6 +25,7 @@
           <input type="hidden" value="" name="id"/>
           <input type="hidden" value="<%= @class.id %>" name="class_id"/>
           <input type="hidden" value="<%= day - 1 %>" name="day"/>
+          <input type="hidden" value="<%= @week_start_date %>" name="week_start_date"/>
           <th scope="row" name="day"><%= day %></th>
           <td><input type="number" name="diemgioi"  class="form-control"/></td>
           <td><input type="number" name="diemkha"   class="form-control"/></td>
@@ -45,6 +46,7 @@
           <input type="hidden" value="<%= @week[day].id %>" name="id"/>
           <input type="hidden" value="<%= @class.id %>" name="class_id"/>
           <input type="hidden" value="<%= day - 1 %>" name="day"/>
+          <input type="hidden" value="<%= @week_start_date %>" name="week_start_date"/>
           <th scope="row" name="thu"><%= day %></th>
           <td><input type="number" name="diemgioi"  value="<%= @week[day].diemgioi %>"    class="form-control"/></td>
           <td><input type="number" name="diemkha"   value="<%= @week[day].diemkha %>"     class="form-control"/></td>

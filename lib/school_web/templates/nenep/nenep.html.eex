@@ -1,0 +1,84 @@
+<h3 class="text-primary" >Lớp: <%= @class.classname %></h3>
+<h4 class="text-primary" >Tuần học: <%= @week_start_date %></h4>
+<table class="table table-striped">
+  <script src="<%= static_path(@conn, "/js/nenep.js") %>"></script>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Thứ</th>
+      <th scope="col">Sĩ số</th>
+      <th scope="col">Khăn quàng</th>
+      <th scope="col">Đồng phục</th>
+      <th scope="col">Vệ sinh</th>
+
+      <th scope="col">Chào cờ</th>
+      <th scope="col">Truy bài</th>
+      <th scope="col">3 không</th>
+      <th scope="col">SH Đội</th>
+
+      <th scope="col">TD vui chơi</th>
+      <th scope="col">Nghi thứ đội</th>
+      <th scope="col">Ghi chú</th>
+
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for day <- [2, 3, 4, 5, 6, 7] do %>
+      <%= if @week[day] == nil do %>
+        <tr id="row<%= day - 1 %>">
+          <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+          <input type="hidden" value="" name="id"/>
+          <input type="hidden" value="<%= @class.id %>" name="class_id"/>
+          <input type="hidden" value="<%= day - 1 %>" name="day"/>
+          <input type="hidden" value="<%= @week_start_date %>" name="week_start_date"/>
+          <th scope="row" name="day"><%= day %></th>
+          <td><input type="number" name="siso"      class="form-control"/></td>
+          <td><input type="number" name="khanquang" class="form-control"/></td>
+          <td><input type="number" name="dongphuc"  class="form-control"/></td>
+          <td><input type="number" name="vesinh"    class="form-control"/></td>
+
+          <td><input type="number" name="chaoco"    class="form-control"/></td>
+          <td><input type="number" name="truybai"   class="form-control"/></td>
+          <td><input type="number" name="bakhong"   class="form-control"/></td>
+          <td><input type="number" name="shdoi"     class="form-control"/></td>
+
+          <td><input type="number" name="tdvuichoi"   class="form-control"/></td>
+          <td><input type="number" name="nghithucdoi" class="form-control"/></td>
+          <td><input type="text"   name="ghichu"      class="form-control" size="50"/></td>
+          <td colspan="2">
+            <button type="button" class="btn btn-sm btn-primary btn-block"
+              onclick='add_button($("#row<%= day - 1%>"))'>Thêm ngày</button>
+          </td>
+        </tr>
+      <% else %>
+        <tr id="row<%= day - 1 %>">
+          <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+          <input type="hidden" value="<%= @week[day].id %>" name="id"/>
+          <input type="hidden" value="<%= @class.id %>" name="class_id"/>
+          <input type="hidden" value="<%= day - 1 %>" name="day"/>
+          <input type="hidden" value="<%= @week_start_date %>" name="week_start_date"/>
+          <th scope="row" name="thu"><%= day %></th>
+          <td><input type="number" name="siso"        value="<%= @week[day].siso / 10 %>"         class="form-control"/></td>
+          <td><input type="number" name="khanquang"   value="<%= @week[day].khanquang / 10 %>"    class="form-control"/></td>
+          <td><input type="number" name="dongphuc"    value="<%= @week[day].dongphuc / 10 %>"     class="form-control"/></td>
+          <td><input type="number" name="vesinh"      value="<%= @week[day].vesinh / 10 %>"       class="form-control"/></td>
+
+          <td><input type="number" name="chaoco"      value="<%= @week[day].chaoco / 10 %>"       class="form-control"/></td>
+          <td><input type="number" name="truybai"     value="<%= @week[day].truybai / 10 %>"      class="form-control"/></td>
+          <td><input type="number" name="bakhong"     value="<%= @week[day].bakhong / 10 %>"      class="form-control"/></td>
+          <td><input type="number" name="shdoi"       value="<%= @week[day].shdoi / 10 %>"        class="form-control"/></td>
+
+          <td><input type="number" name="tdvuichoi"   value="<%= @week[day].tdvuichoi / 10 %>"    class="form-control"/></td>
+          <td><input type="number" name="nghithucdoi" value="<%= @week[day].nghithucdoi / 10 %>"  class="form-control"/></td>
+          <td><input type="text"   name="ghichu"      value="<%= @week[day].ghichu %>"            class="form-control" size="50"/></td>
+
+          <td><button type="button" class="button-modify btn btn-sm btn-primary btn-block"
+                onclick='update_button($("#row<%= day - 1%>"))'>Cập nhật</button>
+          <td><button type="button" class="button-remove btn btn-sm btn-danger btn-block"
+                onclick='delete_button($("#row<%= day - 1%>"))'>Xóa</button>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

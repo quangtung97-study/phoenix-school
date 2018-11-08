@@ -15,13 +15,15 @@ defmodule School.NeNepTest do
       dongphuc: 20,
       khanquang: 20,
       truybai: 20,
+
       chaoco: 20,
       vesinh: 20,
       bakhong: 20,
       shdoi: 20,
-      tdabc: 20,
+
+      tdvuichoi: 20,
       nghithucdoi: 20,
-      ghichu: 20,
+      ghichu: "tung quang",
     }
     %{map: map, account: account}
   end

@@ -12,30 +12,34 @@ function get_map(e) {
         "day": get_value(e, "day"),
         "week_start_date": get_value(e, "week_start_date"),
 
-        "diemgioi": get_value(e, "diemgioi"),
-        "diemkha": get_value(e, "diemkha"),
-        "diemtb": get_value(e, "diemtb"),
-        "diemyeu": get_value(e, "diemyeu"),
-        "diemkem": get_value(e, "diemkem"),
+        "siso": get_value(e, "siso"),
+        "khanquang": get_value(e, "khanquang"),
+        "dongphuc": get_value(e, "dongphuc"),
+        "vesinh": get_value(e, "vesinh"),
 
-        "giotot": get_value(e, "giotot"),
-        "giokha": get_value(e, "giokha"),
-        "giotb": get_value(e, "giotb"),
+        "chaoco": get_value(e, "chaoco"),
+        "truybai": get_value(e, "truybai"),
+        "bakhong": get_value(e, "bakhong"),
+        "shdoi": get_value(e, "shdoi"),
+
+        "tdvuichoi": get_value(e, "tdvuichoi"),
+        "nghithucdoi": get_value(e, "nghithucdoi"),
+        "ghichu": get_value(e, "ghichu"),
     };
     return map;
 }
 
 function update_button(e) {
-    $.post("/hoctap/update/", get_map(e))
+    $.post("/nenep/update/", get_map(e))
         .always(function() { location.reload(); });
 }
 
 function delete_button(e) {
-    $.post("/hoctap/delete/", get_map(e))
+    $.post("/nenep/delete/", get_map(e))
         .always(function() { location.reload(); });
 }
 
 function add_button(e) {
-    $.post("/hoctap/add/", get_map(e))
+    $.post("/nenep/add/", get_map(e))
         .always(function() { location.reload(); });
 }
