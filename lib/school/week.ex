@@ -21,6 +21,18 @@ defmodule School.Week do
     date.year * 10000 + date.month * 100 + date.day
   end
 
+  def nearest_start_dates({{year, month, day}, _}, n) do
+    {:ok, date} = Date.new(year, month, day)
+    date = Date.add(date, 1 - Date.day_of_week(date))
+
+    date
+    |> Stream.iterate(&Date.add(&1, -7))
+    |> Stream.map(fn d ->
+      d.year * 10000 + d.month * 100 + d.day
+    end)
+    |> Enum.take(n)
+  end
+
   def day_of_week({{year, month, day}, _}) do 
     {:ok, date} = Date.new(year, month, day)
     Date.day_of_week(date)

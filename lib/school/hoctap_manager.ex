@@ -6,6 +6,10 @@ defmodule School.HocTapManager do
   alias School.Class
   import Ecto.Query, only: [from: 2]
 
+  def nearest_start_dates(n) do
+    Week.nearest_start_dates(:erlang.localtime, n)
+  end
+
   def current_week() do 
     Week.start_date(:erlang.localtime())
   end
@@ -50,8 +54,7 @@ defmodule School.HocTapManager do
     Repo.all(query)
   end
 
-  def week(class_id) do
-    start_date = current_week()
+  def week(class_id, start_date \\ current_week()) do
     query = from e in HocTap,
       where: e.week_start_date == ^start_date and e.class_id == ^class_id,
       order_by: e.day

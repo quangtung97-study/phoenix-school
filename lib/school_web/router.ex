@@ -41,10 +41,11 @@ defmodule SchoolWeb.Router do
     post "/manage/delete/class/", ManageController, :delete_classes
 
     get "/hoctap/", HoctapController, :index
+    get "/hoctap/admin/:class_id/:week_start_date", HoctapController, :index
 
-    post "/hoctap/loptruong/add/", HoctapController, :loptruong_add
-    post "/hoctap/loptruong/update/", HoctapController, :loptruong_update
-    post "/hoctap/loptruong/delete/", HoctapController, :loptruong_delete
+    post "/hoctap/add/", HoctapController, :add
+    post "/hoctap/update/", HoctapController, :update
+    post "/hoctap/delete/", HoctapController, :delete
   end
 
   # Other scopes may use custom stacks.

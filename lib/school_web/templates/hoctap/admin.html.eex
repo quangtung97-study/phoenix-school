@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" 
+  style="height: 40px; border-style: solid; border-width: 1px;" >
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <%= for c <- @classes do %>
+        <li class="nav-item <%= class_active?(c, @class) %>" 
+          style="width: 80px; border-style: solid; border-width: 0px 1px 0px 0px;">
+          <a class="nav-link" href="/hoctap/admin/<%= c.id %>/<%= @week_start_date %>"><%= c.classname %></a>
+        </li>
+      <% end %>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <%= for d <- @nearest_start_dates do %>
+        <li class="nav-item <%= start_date_active?(d, @week_start_date) %>" 
+          style="width: 100px; border-style: solid; border-width: 0px 0px 0px 1px;">
+          <a class="nav-link" href="/hoctap/admin/<%= @class.id %>/<%= d %>"><%= d %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<%= render(@view_module, "loptruong.html", assigns) %>

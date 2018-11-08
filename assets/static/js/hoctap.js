@@ -20,7 +20,7 @@ function update_button(e) {
         "giokha": get_value(e, "giokha"),
         "giotb": get_value(e, "giotb"),
     };
-    $.post("/hoctap/loptruong/update/", map)
+    $.post("/hoctap/update/", map)
         .always(function() { location.reload(); });
 }
 
@@ -41,7 +41,7 @@ function delete_button(e) {
         "giokha": get_value(e, "giokha"),
         "giotb": get_value(e, "giotb"),
     };
-    $.post("/hoctap/loptruong/delete/", map)
+    $.post("/hoctap/delete/", map)
         .always(function() { location.reload(); });
 }
 
@@ -62,6 +62,6 @@ function add_button(e) {
         "giokha": get_value(e, "giokha"),
         "giotb": get_value(e, "giotb"),
     };
-    $.post("/hoctap/loptruong/add/", map)
+    $.post("/hoctap/add/", map)
         .always(function() { location.reload(); });
 }

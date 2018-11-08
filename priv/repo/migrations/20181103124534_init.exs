@@ -57,6 +57,13 @@ defmodule School.Repo.Migrations.Init do
 
     create unique_index(:nenep, [:day, :week_start_date, :class_id])
 
+    create table(:report) do
+      add :week_start_date, :int, null: false
+      add :data, :json, null: false
+    end
+
+    create unique_index(:report, [:week_start_date])
+
     flush()
 
     {:ok, admin} = 
@@ -69,6 +76,7 @@ defmodule School.Repo.Migrations.Init do
   end
 
   def down do 
+    drop table(:report)
     drop table(:nenep)
     drop table(:hoctap)
     drop table(:account)
