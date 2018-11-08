@@ -18,3 +18,8 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+## To enable port 80 on release
+```console
+sudo setcap CAP_NET_BIND_SERVICE=+eip ./erts-<some-version>/bin/beam.smp
+```
