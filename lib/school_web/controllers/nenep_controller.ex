@@ -78,7 +78,7 @@ defmodule SchoolWeb.NenepController do
     end
   end
 
-  def add(conn, params) do
+  def new(conn, params) do
     account_id = get_session(conn, :account_id)
     map = 
       View.param_map(params)

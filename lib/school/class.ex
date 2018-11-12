@@ -8,6 +8,7 @@ defmodule School.Class do
     has_one :loptruong, School.Account
     has_many :hoctap, School.HocTap
     has_many :nenep, School.NeNep
+    has_many :diemtru, School.DiemTru
   end
 
   defp new_changeset(class, map) do

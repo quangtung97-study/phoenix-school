@@ -53,19 +53,6 @@ defmodule School.NeNep do
       :tdvuichoi, :nghithucdoi
     ])
     |> validate_length(:ghichu, max: 100)
-
-    |> validate_number(:siso, greater_than_or_equal_to: 0)
-    |> validate_number(:khanquang, greater_than_or_equal_to: 0)
-    |> validate_number(:dongphuc, greater_than_or_equal_to: 0)
-    |> validate_number(:vesinh, greater_than_or_equal_to: 0)
-
-    |> validate_number(:chaoco, greater_than_or_equal_to: 0)
-    |> validate_number(:truybai, greater_than_or_equal_to: 0)
-    |> validate_number(:bakhong, greater_than_or_equal_to: 0)
-    |> validate_number(:shdoi, greater_than_or_equal_to: 0)
-
-    |> validate_number(:tdvuichoi, greater_than_or_equal_to: 0)
-    |> validate_number(:nghithucdoi, greater_than_or_equal_to: 0)
   end
 
   def new(map, account) do 

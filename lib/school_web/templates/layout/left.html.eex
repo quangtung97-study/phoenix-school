@@ -13,8 +13,20 @@
 <% end %>
 
 <%= if @account.is_admin do %>
+<li class="nav-item <%= diemtru_active?(@page) %>">
+  <a class="nav-link" href="/diemtru/">Điểm cộng/trừ</a>
+</li>
+<% end %>
+
+<%= if @account.is_admin do %>
 <li class="nav-item <%= manage_active?(@page) %>">
   <a class="nav-link" href="/manage/">Quản lý</a>
+</li>
+<% end %>
+
+<%= if @account.is_admin do %>
+<li class="nav-item <%= report_active?(@page) %>">
+  <a class="nav-link" href="/report/">Báo cáo</a>
 </li>
 <% end %>
 

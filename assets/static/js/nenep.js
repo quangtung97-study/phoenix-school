@@ -39,7 +39,8 @@ function delete_button(e) {
         .always(function() { location.reload(); });
 }
 
-function add_button(e) {
-    $.post("/nenep/add/", get_map(e))
+function new_button(e) {
+    console.log(get_map(e))
+    $.post("/nenep/new/", get_map(e))
         .always(function() { location.reload(); });
 }

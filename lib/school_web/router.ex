@@ -43,7 +43,7 @@ defmodule SchoolWeb.Router do
     get "/hoctap/", HoctapController, :index
     get "/hoctap/admin/:class_id/:week_start_date", HoctapController, :index
 
-    post "/hoctap/add/", HoctapController, :add
+    post "/hoctap/new/", HoctapController, :new
     post "/hoctap/update/", HoctapController, :update
     post "/hoctap/delete/", HoctapController, :delete
 
@@ -53,9 +53,19 @@ defmodule SchoolWeb.Router do
     get "/nenep/admin/", NenepController, :index_admin
     get "/nenep/admin/:class_id/:week_start_date", NenepController, :index_admin
 
-    post "/nenep/add/", NenepController, :add
+    post "/nenep/new/", NenepController, :new
     post "/nenep/update/", NenepController, :update
     post "/nenep/delete/", NenepController, :delete
+
+    get "/diemtru/", DiemtruController, :index
+    get "/diemtru/:week_start_date", DiemtruController, :index
+    post "/diemtru/new/", DiemtruController, :new
+    post "/diemtru/update/", DiemtruController, :update
+    post "/diemtru/delete/", DiemtruController, :delete
+
+    get "/report/", ReportController, :index
+    post "/report/new", ReportController, :new
+    post "/report/update", ReportController, :update
   end
 
   # Other scopes may use custom stacks.

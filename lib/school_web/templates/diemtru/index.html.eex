@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" 
+  style="height: 40px; border-style: solid; border-width: 1px;" >
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <%= for date <- @nearest_start_dates do %>
+        <li class="nav-item <%= date_active?(date, @week_start_date) %>" 
+          style="border-style: solid; border-width: 0px 1px 0px 0px;">
+          <a class="nav-link" href="/diemtru/<%= date %>"><%= date %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<h4 class="text-primary" >Tuần học: <%= @week_start_date %></h4>
+<script src="<%= static_path(@conn, "/js/diemtru.js") %>"></script>
+<table class="table table-striped" style="width: 600px; ">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Lớp</th>
+      <th scope="col">Điểm trừ</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for diemtru <- @week do %>
+      <tr id="row<%= diemtru.class_id %>">
+        <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+        <input type="hidden" value="<%= diemtru.class_id %>" name="class_id"/>
+        <input type="hidden" value="<%= @week_start_date %>" name="week_start_date"/>
+        <%= if diemtru.id == nil do %>
+          <input type="hidden" value="" name="id"/>
+          <th scope="row"><%= diemtru.class.classname %></th>
+          <td><input type="number" name="diemtru" class="form-control"/></td>
+          <td colspan="2">
+            <button type="button" class="btn btn-sm btn-primary btn-block"
+              onclick='new_diemtru($("#row<%= diemtru.class_id %>"))'>Thêm</button>
+          </td>
+        <% else %>
+          <input type="hidden" value="<%= diemtru.id %>" name="id"/>
+          <th scope="row"><%= diemtru.class.classname %></th>
+          <td><input type="number" name="diemtru" value="<%= diemtru.diemtru %>" class="form-control"/></td>
+          <td><button type="button" class="button-modify btn btn-sm btn-primary btn-block"
+                onclick='update_diemtru($("#row<%= diemtru.class_id %>"))'>Cập nhật</button>
+          </td>
+          <td><button type="button" class="button-remove btn btn-sm btn-danger btn-block"
+                onclick='delete_diemtru($("#row<%= diemtru.class_id %>"))'>Xóa</button>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

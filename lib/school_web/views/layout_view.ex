@@ -13,7 +13,15 @@ defmodule SchoolWeb.LayoutView do
 
   def nenep_active?(_), do: ""
 
+  def diemtru_active?(:diemtru), do: "active"
+
+  def diemtru_active?(_), do: ""
+
   def manage_active?(:manage), do: "active"
 
   def manage_active?(_), do: ""
+
+  def report_active?(:report), do: "active"
+
+  def report_active?(_), do: ""
 end

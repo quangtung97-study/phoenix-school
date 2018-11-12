@@ -31,8 +31,8 @@ defmodule SchoolWeb.HoctapView do
     if params["week_start_date"] == nil do
       School.Week.current_week()
     else
-      {start_date, _} = Integer.parse(params["week_start_date"])
-      start_date
+      {date, _} = Integer.parse(params["week_start_date"])
+      School.Week.start_date(date)
     end
   end
 

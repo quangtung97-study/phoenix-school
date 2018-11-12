@@ -25,14 +25,14 @@
   </thead>
   <tbody>
     <%= for day <- [2, 3, 4, 5, 6, 7] do %>
-      <%= if @week[day] == nil do %>
-        <tr id="row<%= day - 1 %>">
-          <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+      <tr id="row<%= day - 1 %>">
+        <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+        <input type="hidden" value="<%= @class.id %>" name="class_id"/>
+        <input type="hidden" value="<%= day - 1 %>" name="day"/>
+        <input type="hidden" value="<%= @week_start_date %>" name="week_start_date"/>
+        <%= if @week[day] == nil do %>
           <input type="hidden" value="" name="id"/>
-          <input type="hidden" value="<%= @class.id %>" name="class_id"/>
-          <input type="hidden" value="<%= day - 1 %>" name="day"/>
-          <input type="hidden" value="<%= @week_start_date %>" name="week_start_date"/>
-          <th scope="row" name="day"><%= day %></th>
+          <th scope="row"><%= day %></th>
           <td><input type="number" name="siso"      class="form-control"/></td>
           <td><input type="number" name="khanquang" class="form-control"/></td>
           <td><input type="number" name="dongphuc"  class="form-control"/></td>
@@ -48,17 +48,11 @@
           <td><input type="text"   name="ghichu"      class="form-control" size="50"/></td>
           <td colspan="2">
             <button type="button" class="btn btn-sm btn-primary btn-block"
-              onclick='add_button($("#row<%= day - 1%>"))'>Thêm ngày</button>
+              onclick='new_button($("#row<%= day - 1%>"))'>Thêm ngày</button>
           </td>
-        </tr>
-      <% else %>
-        <tr id="row<%= day - 1 %>">
-          <input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+        <% else %>
           <input type="hidden" value="<%= @week[day].id %>" name="id"/>
-          <input type="hidden" value="<%= @class.id %>" name="class_id"/>
-          <input type="hidden" value="<%= day - 1 %>" name="day"/>
-          <input type="hidden" value="<%= @week_start_date %>" name="week_start_date"/>
-          <th scope="row" name="thu"><%= day %></th>
+          <th scope="row"><%= day %></th>
           <td><input type="number" name="siso"        value="<%= @week[day].siso / 10 %>"         class="form-control"/></td>
           <td><input type="number" name="khanquang"   value="<%= @week[day].khanquang / 10 %>"    class="form-control"/></td>
           <td><input type="number" name="dongphuc"    value="<%= @week[day].dongphuc / 10 %>"     class="form-control"/></td>
@@ -75,10 +69,12 @@
 
           <td><button type="button" class="button-modify btn btn-sm btn-primary btn-block"
                 onclick='update_button($("#row<%= day - 1%>"))'>Cập nhật</button>
+          </td>
           <td><button type="button" class="button-remove btn btn-sm btn-danger btn-block"
                 onclick='delete_button($("#row<%= day - 1%>"))'>Xóa</button>
-        </tr>
-      <% end %>
+          </td>
+        <% end %>
+      </tr>
     <% end %>
   </tbody>
 </table>

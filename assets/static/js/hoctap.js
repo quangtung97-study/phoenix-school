@@ -35,7 +35,7 @@ function delete_button(e) {
         .always(function() { location.reload(); });
 }
 
-function add_button(e) {
-    $.post("/hoctap/add/", get_map(e))
+function new_button(e) {
+    $.post("/hoctap/new/", get_map(e))
         .always(function() { location.reload(); });
 }

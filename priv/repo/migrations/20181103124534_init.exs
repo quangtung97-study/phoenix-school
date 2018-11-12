@@ -66,6 +66,23 @@ defmodule School.Repo.Migrations.Init do
 
     create unique_index(:report, [:week_start_date])
 
+    create table(:diemtru) do
+      add :week_start_date, :int, null: false
+      add :class_id, references(:class), null: false
+      add :diemtru, :int, null: false
+    end
+
+    create unique_index(:diemtru, [:week_start_date, :class_id])
+
+    create table(:diemtruthang) do
+      add :month, :int, null: false
+      add :class_id, references(:class), null: false
+      add :diemtru, :int, null: false
+      add :diemcong, :int, null: false
+    end
+
+    create unique_index(:diemtruthang, [:month, :class_id])
+
     flush()
 
     {:ok, admin} = 
@@ -78,6 +95,8 @@ defmodule School.Repo.Migrations.Init do
   end
 
   def down do 
+    drop table(:diemtruthang)
+    drop table(:diemtru)
     drop table(:report)
     drop table(:nenep)
     drop table(:hoctap)

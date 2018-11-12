@@ -2,7 +2,7 @@ defmodule School.Week do
   import Ecto.Changeset
 
   def validate_beginning_of_week(cs, field) do
-    validate_change(cs, field, fn field, date ->
+    validate_change(cs, field, fn ^field, date ->
       year = div(date, 10000)
       date = date - year * 10000
       month = div(date, 100)
@@ -26,6 +26,14 @@ defmodule School.Week do
     date.year * 10000 + date.month * 100 + date.day
   end
 
+  def start_date(day_value) do
+    year = div(day_value, 10000)
+    day_value = day_value - year * 10000
+    month = div(day_value, 100)
+    day = day_value - month * 100
+    start_date({{year, month, day}, nil})
+  end
+
   def current_week() do 
     start_date(:erlang.localtime())
   end
@@ -43,6 +51,19 @@ defmodule School.Week do
   end
 
   def nearest_start_dates(n) do
-    nearest_start_dates(:erlang.localtime, n)
+    nearest_start_dates(:erlang.localtime(), n)
+  end
+
+  def start_date_since_weeks_ago({{year, month, day}, _}, week_count) do
+    {:ok, date} = Date.new(year, month, day)
+    date = 
+      date
+      |> Date.add(1 - Date.day_of_week(date))
+      |> Date.add(-7 * week_count)
+    date.year * 10000 + date.month * 100 + date.day
+  end
+
+  def start_date_since_weeks_ago(week_count) do
+    start_date_since_weeks_ago(:erlang.localtime(), week_count)
   end
 end
