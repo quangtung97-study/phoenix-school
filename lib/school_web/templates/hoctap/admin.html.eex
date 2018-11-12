@@ -1,18 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" 
-  style="height: 40px; border-style: solid; border-width: 1px;" >
-  <div class="collapse navbar-collapse">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#school-secondary-bar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="school-secondary-bar">
     <ul class="navbar-nav mr-auto">
       <%= for c <- @classes do %>
-        <li class="nav-item <%= class_active?(c, @class) %>" 
-          style="width: 60px; text-align: center; border-style: solid; border-width: 0px 1px 0px 0px;">
+        <li class="nav-item <%= class_active?(c, @class) %>" style="width: 50pt; ">
           <a class="nav-link" href="/hoctap/admin/<%= c.id %>/<%= @week_start_date %>"><%= c.classname %></a>
         </li>
       <% end %>
     </ul>
     <ul class="navbar-nav ml-auto">
       <%= for d <- @nearest_start_dates do %>
-        <li class="nav-item <%= start_date_active?(d, @week_start_date) %>" 
-          style="border-style: solid; border-width: 0px 0px 0px 1px;">
+        <li class="nav-item <%= start_date_active?(d, @week_start_date) %>">
           <a class="nav-link" href="/hoctap/admin/<%= @class.id %>/<%= d %>"><%= d %></a>
         </li>
       <% end %>

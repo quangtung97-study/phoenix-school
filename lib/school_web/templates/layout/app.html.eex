@@ -13,12 +13,16 @@
 
   <body>
     <nav id="top-bar" class="navbar navbar-expand-lg navbar-dark bg-dark" >
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#school-top-bar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
       <a class="navbar-brand" href="/">
         <img src="<%= static_path(@conn, "/images/twitter-logo.png") %>" width="30" height="30" alt="">
         THCS Nguyễn Quang Bích
       </a>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="school-top-bar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item <%= home_active?(@page) %>">
             <a class="nav-link" href="/">Trang chủ </a>

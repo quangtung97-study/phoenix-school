@@ -1,10 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" 
-  style="height: 40px; border-style: solid; border-width: 1px;" >
-  <div class="collapse navbar-collapse">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#school-secondary-bar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="school-secondary-bar">
     <ul class="navbar-nav mr-auto">
       <%= for date <- @nearest_start_dates do %>
-        <li class="nav-item <%= date_active?(date, @week_start_date) %>" 
-          style="border-style: solid; border-width: 0px 1px 0px 0px;">
+        <li class="nav-item <%= date_active?(date, @week_start_date) %>" >
           <a class="nav-link" href="/diemtru/<%= date %>"><%= date %></a>
         </li>
       <% end %>
@@ -14,7 +16,7 @@
 
 <h4 class="text-primary" >Tuần học: <%= @week_start_date %></h4>
 <script src="<%= static_path(@conn, "/js/diemtru.js") %>"></script>
-<table class="table table-striped" style="width: 600px; ">
+<table class="table table-striped" style="width: 500pt; ">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Lớp</th>

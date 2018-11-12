@@ -11,11 +11,9 @@
   </form>
 </li>
 <% else %>
-<ul class="navbar-nav ml-auto">
 <li class="nav-item">
   <a class="btn btn-primary" href="/account/login/">
     Đăng nhập
   </a>
 </li>
-</ul>
 <% end %>
